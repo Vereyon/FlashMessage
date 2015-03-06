@@ -73,7 +73,7 @@
     <Compile Include="FlashMessageCookieTransport.cs" />
     <Compile Include="FlashMessageHtmlHelper.cs" />
     <Compile Include="FlashMessageModel.cs" />
-    <Compile Include="FlashMessageTempDataTransport.cs" />
+    <Compile Include="FlashMessageSessionTransport.cs" />
     <Compile Include="IFlashMessageTransport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

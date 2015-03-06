@@ -12,18 +12,15 @@ namespace Vereyon.Web
     public class FlashMessage
     {
 
-        public static string CookieName { get; set; }
-
         /// <summary>
-        /// Gets / sets the size limit of the cookie in bytes. This is used to ensure the response complies with the cookie specification.
+        /// Gets / sets the transport used for the flash messages.
         /// </summary>
-        public static int CookieSizeLimit { get; set; }
+        public static IFlashMessageTransport Transport { get; set; }
 
         static FlashMessage()
         {
 
-            CookieName = "_FlashMessage";
-            CookieSizeLimit = 1024 * 3;
+            Transport = new FlashMessageCookieTransport();
         }
 
         /// <summary>
@@ -54,36 +51,28 @@ namespace Vereyon.Web
         public static void Queue(string message, string title, FlashMessageType messageType, bool isHtml)
         {
 
-            FlashMessageModel flashMessage;
-            List<FlashMessageModel> messages;
-            HttpContextBase context;
-
-            // Retrieve the currently queued cookies.
-            context = new HttpContextWrapper(HttpContext.Current);
-            messages = GetQueued(context);
-
             // Append the new message.
-            flashMessage = new FlashMessageModel { IsHtml = isHtml, Message = message, Title = title, Type = messageType };
-            messages.Add(flashMessage);
-
-            Queue(context, messages);
+            var flashMessage = new FlashMessageModel { IsHtml = isHtml, Message = message, Title = title, Type = messageType };
+            Queue(flashMessage);
         }
 
         /// <summary>
-        /// Queues the passed message for display on the next response.
+        /// Queues the passed flash message for display.
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="messages"></param>
-        public static void Queue(HttpContextBase context, List<FlashMessageModel> messages)
+        /// <param name="message"></param>
+        public static void Queue(FlashMessageModel message)
         {
 
-            // Serialize messages and enforce cookie size limit.
-            var serializedMessages = Serialize(messages);
-            if (serializedMessages.Length > CookieSizeLimit)
-                throw new InvalidOperationException("The flash messages cookie size limit exceeded the limit value.");
+            List<FlashMessageModel> messages;
 
-            var cookie = new HttpCookie(CookieName, serializedMessages);
-            context.Response.SetCookie(cookie);
+            // Retrieve the currently queued cookies.
+            messages = GetQueued();
+
+            // Append the new message.
+            messages.Add(message);
+
+            // Store the messages.
+            Transport.Queue(messages);
         }
 
         /// <summary>
@@ -91,56 +80,38 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static List<FlashMessageModel> GetQueued(HttpContextBase context)
+        public static List<FlashMessageModel> GetQueued()
         {
-
-            // Attempt to retrieve cookie.
-            var cookie = context.Request.Cookies[CookieName];
-            if (cookie == null)
-                return new List<FlashMessageModel>();
-
-            // Deserialize the message.
-            return Deserialize(cookie.Value);
+            return Transport.GetQueued();
         }
 
         /// <summary>
-        /// Retrieves the flash messages from the incoming request cookie and clears the cookie.
+        /// Retrieves the queued flash messages for display and clears them.
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
         public static List<FlashMessageModel> Retrieve(HttpContextBase context)
         {
-
-            // Attempt to retrieve cookie.
-            var cookie = context.Request.Cookies[CookieName];
-            if (cookie == null)
-                return new List<FlashMessageModel>();
-
-            // Deserialize the message.
-            var messages = Deserialize(cookie.Value);
-
-            // Clear the cookie by setting it to expired.
-            cookie.Value = null;
-            cookie.Expires = DateTime.Now.AddDays(-1);
-            context.Response.SetCookie(cookie);
-
-            return messages;
+            return Transport.Retrieve();
         }
 
-        public static List<FlashMessageModel> Deserialize(string serializedMessages)
+        /// <summary>
+        /// Deserializes a serialized collection of flash messages.
+        /// </summary>
+        /// <param name="serializedMessages"></param>
+        /// <returns></returns>
+        public static List<FlashMessageModel> Deserialize(byte[] data)
         {
 
-            // Decrypt messages string using the configured machine encryption.
-            using (MemoryStream stream = new MemoryStream(MachineKey.Decode(serializedMessages, MachineKeyProtection.All)))
+            var messages = new List<FlashMessageModel>();
+            int messageCount;
+
+            // Check if there is any data to read, if not we are done quickly.
+            if (data.Length == 0)
+                return messages;
+
+            using (MemoryStream stream = new MemoryStream(data))
             {
-
-                var messages = new List<FlashMessageModel>();
-                int messageCount;
-
-                // Check if there is any data to read.
-                if (stream.Length == 0)
-                    return messages;
-
                 using (BinaryReader reader = new BinaryReader(stream))
                 {
 
@@ -165,10 +136,13 @@ namespace Vereyon.Web
             }
         }
 
-        public static string Serialize(List<FlashMessageModel> messages)
+        /// <summary>
+        /// Serializes the passed list of messages to binary format.
+        /// </summary>
+        /// <param name="messages"></param>
+        /// <returns></returns>
+        public static byte[] Serialize(IList<FlashMessageModel> messages)
         {
-
-            // Decrypt messages.
             using (MemoryStream stream = new MemoryStream())
             {
                 using (BinaryWriter writer = new BinaryWriter(stream))
@@ -184,9 +158,9 @@ namespace Vereyon.Web
                         writer.Write((byte)message.Type);
                     }
 
-                    // Encrypt the message and return data as string.
+                    // Return the data as a byte array.
                     writer.Flush();
-                    return MachineKey.Encode(stream.ToArray(), MachineKeyProtection.All);
+                    return stream.ToArray();
                 }
             }
         }
