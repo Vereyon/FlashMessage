@@ -6,6 +6,8 @@ FlashMessage provides easy cross request notifications for ASP.NET MVC based on 
 Usage
 -----
 
+Install the [FlashMessage NuGet package](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/).
+
 ### Rendering flash messages
 
 Typically you want to render all queued flash messages in your Layout Razor template using the following code:
@@ -50,8 +52,8 @@ Got tests? Yes, see the tests project. It uses xUnit.
 More information
 -----
 
- * [HtmlRuleSanitizer NuGet package](https://www.nuget.org/packages/Vereyon.Web.HtmlSanitizer/)
- * [CodeProject article on HtmlRuleSanitizer](http://www.codeproject.com/Articles/879381/Rule-based-HTML-sanitizer)
+ * [FlashMessage NuGet package](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/)
+ * [CodeProject article on FlashMessage](http://www.codeproject.com/Articles/987638/Post-Redirect-Get-user-notifications-for-ASP-NET-M)
  * [Used in AlertA Contract Management](http://www.alert.eu)
 
 License

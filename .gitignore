@@ -2,3 +2,5 @@
 /Web.FlashMessage/bin
 /Web.FlashMessage.Tests/obj
 /Web.FlashMessage.Tests/bin
+/Web.FlashMessage/NuGet-Signed.exe
+/Web.FlashMessage/*.nupkg
