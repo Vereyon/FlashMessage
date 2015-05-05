@@ -76,6 +76,90 @@ namespace Vereyon.Web
         }
 
         /// <summary>
+        /// Queues the passed message as an infomational message.
+        /// </summary>
+        /// <param name="message"></param>
+        public static void Info(string message)
+        {
+            Queue(message, FlashMessageType.Info);
+        }
+
+        /// <summary>
+        /// Formats and queues the passed message as an infomational message.
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="args"></param>
+        public static void Info(string format, params object[] args)
+        {
+
+            var message = string.Format(format, args);
+            Queue(message, FlashMessageType.Info);
+        }
+
+        /// <summary>
+        /// Queues the passed message as a warning message.
+        /// </summary>
+        /// <param name="message"></param>
+        public static void Warning(string message)
+        {
+            Queue(message, FlashMessageType.Warning);
+        }
+
+        /// <summary>
+        /// Formats and queues the passed message as a warning message.
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="args"></param>
+        public static void Warning(string format, params object[] args)
+        {
+
+            var message = string.Format(format, args);
+            Queue(message, FlashMessageType.Warning);
+        }
+
+        /// <summary>
+        /// Queues the passed message as a danger message.
+        /// </summary>
+        /// <param name="message"></param>
+        public static void Danger(string message)
+        {
+            Queue(message, FlashMessageType.Danger);
+        }
+
+        /// <summary>
+        /// Formats and queues the passed message as a danger message.
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="args"></param>
+        public static void Danger(string format, params object[] args)
+        {
+
+            var message = string.Format(format, args);
+            Queue(message, FlashMessageType.Danger);
+        }
+
+        /// <summary>
+        /// Queues the passed message as a confirmation message.
+        /// </summary>
+        /// <param name="message"></param>
+        public static void Confirmation(string message)
+        {
+            Queue(message, FlashMessageType.Confirmation);
+        }
+
+        /// <summary>
+        /// Formats and queues the passed message as a confirmation message.
+        /// </summary>
+        /// <param name="format"></param>
+        /// <param name="args"></param>
+        public static void Confirmation(string format, params object[] args)
+        {
+
+            var message = string.Format(format, args);
+            Queue(message, FlashMessageType.Confirmation);
+        }
+
+        /// <summary>
         /// Retrieves the queued messages for the current response.
         /// </summary>
         /// <param name="context"></param>

@@ -5,12 +5,10 @@ using System.Text;
 
 namespace Vereyon.Web
 {
+
     /// <summary>
     /// The FlashMessageModel class represents an individual flash message.
     /// </summary>
-    /// <remarks>
-    /// Based on http://blogs.us.sogeti.com/swilliams/2010/05/03/extensibility-in-aspnet-mvc-via-messaging/
-    /// </remarks>
     public class FlashMessageModel
     {
 
@@ -28,6 +26,7 @@ namespace Vereyon.Web
         public FlashMessageModel()
         {
             IsHtml = false;
+            Type = FlashMessageType.Info;
         }
     }
 

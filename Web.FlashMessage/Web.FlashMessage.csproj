@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Vereyon.Web</RootNamespace>
-    <AssemblyName>Web.FlashMessage</AssemblyName>
+    <AssemblyName>Vereyon.Web.FlashMessage</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
