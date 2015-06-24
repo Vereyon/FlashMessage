@@ -22,7 +22,7 @@ Queuing a confirmation message for display on the next request after for example
 
 ```C#
 // User successfully logged in
-FlashMessage.Confirm("You have been logged in as: {0}", user.Name);
+FlashMessage.Confirmation("You have been logged in as: {0}", user.Name);
 return RedirectToLocal(returnUrl);
 ```
 
@@ -30,7 +30,7 @@ Different types of messages can be scheduled using different static methods on t
 
 ```C#
 FlashMessage.Info("Your informational message");
-FlashMessage.Confirm("Your confirmation message");
+FlashMessage.Confirmation("Your confirmation message");
 FlashMessage.Warning("Your warning message");
 FlashMessage.Danger("Your danger alert");
 ```
