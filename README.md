@@ -35,6 +35,7 @@ FlashMessage.Info("Your informational message");
 FlashMessage.Confirmation("Your confirmation message");
 FlashMessage.Warning("Your warning message");
 FlashMessage.Danger("Your danger alert");
+FlashMessage.Danger("Message title", "Your danger alert");
 ```
 
 ### Advanced options

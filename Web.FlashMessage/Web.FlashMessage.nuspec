@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/Vereyon/FlashMessage</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>FlashMessage provides easy cross request notifications for ASP.NET MVC based on Twitter Bootstrap alerts.</description>
-    <releaseNotes>1.0.1: More messages methods avaliable</releaseNotes>
+    <releaseNotes>1.0.1: Made more shorthand messages queueing methods available.</releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>ASP.NET MVC PRG notification message flash</tags>
   </metadata>
