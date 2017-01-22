@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Web.FlashMessage.Core": "1.0.0-*",
+    "xunit": "2.1.0",
+    "xunit.runner.visualstudio": "2.1.0"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [ "dnxcore50", "portable-net45+win8" ]
+    }
+  }
+}
