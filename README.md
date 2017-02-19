@@ -8,9 +8,11 @@ FlashMessage provides easy cross request notifications for ASP.NET MVC based on 
 Usage
 -----
 
+### ASP.NET 5 and earlier
+
 Install the [FlashMessage NuGet package](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/) and import the ```Vereyon.Web``` namespace where you need it.
 
-### Rendering flash messages
+#### Rendering flash messages
 
 Typically you want to render all queued flash messages in your Layout Razor template using the following code:
 
@@ -18,7 +20,7 @@ Typically you want to render all queued flash messages in your Layout Razor temp
 @Html.RenderFlashMessages()
 ```
 
-### Queuing flash messages
+#### Queuing flash messages
 
 Queuing a confirmation message for display on the next request after for example user login is done as follows:
 
@@ -38,7 +40,7 @@ FlashMessage.Danger("Your danger alert");
 FlashMessage.Danger("Message title", "Your danger alert");
 ```
 
-### Advanced options
+#### Advanced options
 
 Using the FlashMessage.Queue() method advanced options are available:
 
@@ -47,6 +49,20 @@ FlashMessage.Queue(string.Format("You have been logged in as: {0}", user.Name), 
 ```
 
 The ```FlashMessage``` class allows you to queue messages anywhere in your code where a HttpContext is available and the response has not yet been sent out. You can thus also use FlashMessage outside your MVC actions or with WebForms applications.
+
+### ASP.NET Core
+
+Note: ASP.NET MVC Core support is still in development. No NuGet package is available yet.
+
+Register the required services during startup:
+
+```C#
+services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
+services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+services.AddScoped<Vereyon.Web.IFlashMessage, Vereyon.Web.FlashMessage>();
+```
+
+Use the IFlashMessage service in your controller.
 
 Tests
 -----
