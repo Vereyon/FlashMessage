@@ -9,8 +9,33 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Vereyon.Web
 {
-    public static class FlashMessage
+    public class FlashMessage : IFlashMessage
     {
+
+
+        public ITempDataDictionary _tempData;
+
+        public ITempDataDictionary TempData {
+        set { _tempData = value; }
+            get
+            {
+                if (_tempData == null)
+                    _tempData = _tempDataFactory.GetTempData(_httpContextAccessor.HttpContext);
+
+                return _tempData;
+            }
+        }
+
+        private ITempDataDictionaryFactory _tempDataFactory;
+
+        private IHttpContextAccessor _httpContextAccessor;
+
+        public FlashMessage(ITempDataDictionaryFactory tempDataFactory, IHttpContextAccessor httpContextAccessor)
+        {
+
+            _tempDataFactory = tempDataFactory;
+            _httpContextAccessor = httpContextAccessor;
+        }
 
         public static string KeyName { get; set; } = "_FlashMessage";
 
@@ -18,9 +43,9 @@ namespace Vereyon.Web
         /// Queues a flash message for display with the specified message for display as a info notification.
         /// </summary>
         /// <param name="message"></param>
-        public static void Queue(this Controller @this, string message)
+        public void Queue(string message)
         {
-            Queue(@this, FlashMessageType.Info, message, string.Empty, false);
+            Queue( FlashMessageType.Info, message, string.Empty, false);
         }
 
         /// <summary>
@@ -28,18 +53,18 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
-        public static void Queue(this Controller @this, string title, string message)
+        public void Queue(string title, string message)
         {
-            Queue(@this, FlashMessageType.Info, message, title);
+            Queue(FlashMessageType.Info, message, title);
         }
 
         /// <summary>
         /// Queues a flash message for display with the specified message.
         /// </summary>
         /// <param name="message"></param>
-        public static void Queue(this Controller @this, FlashMessageType messageType, string message)
+        public void Queue(FlashMessageType messageType, string message)
         {
-            Queue(@this, messageType, message, string.Empty);
+            Queue(messageType, message, string.Empty);
         }
 
         /// <summary>
@@ -49,12 +74,12 @@ namespace Vereyon.Web
         /// <param name="title"></param>
         /// <param name="messageType"></param>
         /// <param name="isHtml"></param>
-        public static void Queue(this Controller @this, FlashMessageType messageType, string message, string title, bool isHtml = false)
+        public void Queue(FlashMessageType messageType, string message, string title, bool isHtml = false)
         {
 
             // Append the new message.
             var flashMessage = new FlashMessageModel { IsHtml = isHtml, Message = message, Title = title, Type = messageType };
-            Queue(@this, flashMessage);
+            Queue(flashMessage);
         }
 
 
@@ -62,19 +87,19 @@ namespace Vereyon.Web
         /// Queues the passed flash message for display.
         /// </summary>
         /// <param name="message"></param>
-        public static void Queue(this Controller @this, FlashMessageModel message)
+        public void Queue(FlashMessageModel message)
         {
 
             List<FlashMessageModel> messages;
 
             // Retrieve the currently queued cookies.
-            messages = Queued(@this.TempData);
+            messages = Queued(TempData);
 
             // Append the new message.
             messages.Add(message);
 
             // Store the messages.
-            Queue(@this, messages);
+            Store(messages);
         }
 
         #region Shorthand Methods
@@ -321,14 +346,14 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="this"></param>
         /// <param name="messages"></param>
-        private static void Queue(Controller @this, IList<FlashMessageModel> messages)
+        private void Store(IList<FlashMessageModel> messages)
         {
 
             // Serialize the messages.
             var data = Serialize(messages);
 
             // Set the data without doing any further securing or transformations.
-            @this.TempData[KeyName] = data;
+            TempData[KeyName] = data;
         }
 
         /// <summary>

@@ -4,40 +4,44 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Vereyon.Web;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace Web.FlashMessage.MvcCoreExample.Controllers
 {
     public class HomeController : Controller
     {
+
+        public IFlashMessage FlashMessage { get; private set; }
+
+        public HomeController(IFlashMessage flashMessage)
+        {
+
+            // Retrieve a handle to the flash message service via DI.
+            FlashMessage = flashMessage;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        [HttpPost]
+        public IActionResult HandleFormPost1()
         {
-            ViewData["Message"] = "Your application description page.";
 
-            return View();
+
+
+            FlashMessage.Queue("Example message");
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
-            return View();
-        }
-
-        public IActionResult PostRedirect()
+        [HttpPost]
+        public IActionResult HandleFormPost2()
         {
 
-            this.Queue("Example message");
+            FlashMessage.Queue("Example message");
             return RedirectToAction("Index");
         }
     }
 }
+
