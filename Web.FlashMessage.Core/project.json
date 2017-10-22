@@ -1,5 +1,11 @@
 {
   "version": "1.0.0-*",
+  "description": "FlashMessage provides easy cross request notifications for ASP.NET MVC Core based on Twitter Bootstrap alerts.",
+  "authors": [ "Vereyon" ],
+
+  "buildOptions": {
+    "outputName": "Vereyon.Web.FlashMessageCore"
+  },
 
   "dependencies": {
     "Microsoft.AspNetCore.Mvc.Core": "1.0.1",

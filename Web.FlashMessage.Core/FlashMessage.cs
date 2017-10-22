@@ -15,8 +15,9 @@ namespace Vereyon.Web
 
         public ITempDataDictionary _tempData;
 
-        public ITempDataDictionary TempData {
-        set { _tempData = value; }
+        public ITempDataDictionary TempData
+        {
+            protected set { _tempData = value; }
             get
             {
                 if (_tempData == null)

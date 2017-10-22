@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Vereyon.Web.FlashMessageCore</id>
+    <version>1.0.0</version>
+    <title>FlashMessage Core</title>
+    <authors>Vereyon</authors>
+    <owners>Vereyon</owners>
+    <licenseUrl>https://github.com/Vereyon/FlashMessage/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Vereyon/FlashMessage</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>FlashMessage provides easy cross request notifications for ASP.NET MVC Core based on Twitter Bootstrap alerts.</description>
+    <releaseNotes>1.0.0: First version to support ASP.NET Core.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>ASP.NET MVC PRG notification message flash core standard</tags>
+  </metadata>
+</package>
