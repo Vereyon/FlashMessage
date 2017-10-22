@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.FlashMessage", "Web.FlashMessage\Web.FlashMessage.csproj", "{4900C930-ED11-498A-B7ED-FA4D26483B0C}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web.FlashMessage.Core", "Web.FlashMessage.Core\Web.FlashMessage.Core.xproj", "{9057C046-64F4-4BA6-A3FA-60DED715CC2C}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web.FlashMessage.Core.Tests", "Web.FlashMessage.Core.Tests\Web.FlashMessage.Core.Tests.xproj", "{AC1E19DA-3B90-40B6-B09F-6860FE831021}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Web.FlashMessage.MvcCoreExample", "Web.FlashMessage.MvcCoreExample\Web.FlashMessage.MvcCoreExample.xproj", "{3DD1B446-D467-4F3A-977F-315FE5A090BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.FlashMessage.MvcExample", "Web.FlashMessage.MvcExample\Web.FlashMessage.MvcExample.csproj", "{DE1C879B-B60E-453E-8985-0C959A7F9E36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.FlashMessage.Tests", "Web.FlashMessage.Tests\Web.FlashMessage.Tests.csproj", "{63F72649-587F-4F60-B0F1-DCFE2012A6C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4900C930-ED11-498A-B7ED-FA4D26483B0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4900C930-ED11-498A-B7ED-FA4D26483B0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4900C930-ED11-498A-B7ED-FA4D26483B0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4900C930-ED11-498A-B7ED-FA4D26483B0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9057C046-64F4-4BA6-A3FA-60DED715CC2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9057C046-64F4-4BA6-A3FA-60DED715CC2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9057C046-64F4-4BA6-A3FA-60DED715CC2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9057C046-64F4-4BA6-A3FA-60DED715CC2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC1E19DA-3B90-40B6-B09F-6860FE831021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC1E19DA-3B90-40B6-B09F-6860FE831021}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC1E19DA-3B90-40B6-B09F-6860FE831021}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC1E19DA-3B90-40B6-B09F-6860FE831021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD1B446-D467-4F3A-977F-315FE5A090BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD1B446-D467-4F3A-977F-315FE5A090BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD1B446-D467-4F3A-977F-315FE5A090BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD1B446-D467-4F3A-977F-315FE5A090BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE1C879B-B60E-453E-8985-0C959A7F9E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE1C879B-B60E-453E-8985-0C959A7F9E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE1C879B-B60E-453E-8985-0C959A7F9E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE1C879B-B60E-453E-8985-0C959A7F9E36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63F72649-587F-4F60-B0F1-DCFE2012A6C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63F72649-587F-4F60-B0F1-DCFE2012A6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63F72649-587F-4F60-B0F1-DCFE2012A6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63F72649-587F-4F60-B0F1-DCFE2012A6C5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

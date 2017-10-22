@@ -40,7 +40,7 @@ namespace Vereyon.Web
         public static string KeyName { get; set; } = "_FlashMessage";
 
         /// <summary>
-        /// Queues a flash message for display with the specified message for display as a info notification.
+        /// Queues a flash message for display with the specified message for display as an info notification.
         /// </summary>
         /// <param name="message"></param>
         public void Queue(string message)
@@ -49,7 +49,7 @@ namespace Vereyon.Web
         }
 
         /// <summary>
-        /// Queues a flash message for display with the specified message and title for display as a info notification.
+        /// Queues a flash message for display with the specified message and title for display as an info notification.
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
@@ -103,12 +103,12 @@ namespace Vereyon.Web
         }
 
         #region Shorthand Methods
-        /*
+        
         /// <summary>
         /// Queues the passed message as an infomational message.
         /// </summary>
         /// <param name="message"></param>
-        public static void Info(string message)
+        public void Info(string message)
         {
             Queue(FlashMessageType.Info, message);
         }
@@ -118,7 +118,7 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public static void Info(string format, params object[] args)
+        public void Info(string format, params object[] args)
         {
 
             var message = string.Format(format, args);
@@ -131,20 +131,20 @@ namespace Vereyon.Web
         /// <param name="title"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public static void Info(string title, string format, params object[] args)
+        public void Info(string title, string format, params object[] args)
         {
 
             var message = string.Format(format, args);
-            Queue(message, title, FlashMessageType.Info);
+            Queue(FlashMessageType.Info, message, title);
         }
 
         /// <summary>
         /// Queues the passed message as a warning message.
         /// </summary>
         /// <param name="message"></param>
-        public static void Warning(string message)
+        public void Warning(string message)
         {
-            Queue(message, FlashMessageType.Warning);
+            Queue(FlashMessageType.Warning, message);
         }
 
         /// <summary>
@@ -152,9 +152,9 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
-        public static void Warning(string title, string message)
+        public void Warning(string title, string message)
         {
-            Queue(message, title, FlashMessageType.Warning);
+            Queue(FlashMessageType.Warning, message, title);
         }
 
         /// <summary>
@@ -162,11 +162,11 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public static void Warning(string format, params object[] args)
+        public void Warning(string format, params object[] args)
         {
 
             var message = string.Format(format, args);
-            Queue(message, FlashMessageType.Warning);
+            Queue(FlashMessageType.Warning, message);
         }
 
         /// <summary>
@@ -175,29 +175,29 @@ namespace Vereyon.Web
         /// <param name="title"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public static void Warning(string title, string format, params object[] args)
+        public void Warning(string title, string format, params object[] args)
         {
 
             var message = string.Format(format, args);
-            Queue(message, title, FlashMessageType.Warning);
+            Queue(FlashMessageType.Warning, message, title);
         }
 
         /// <summary>
         /// Queues the passed message as a danger message.
         /// </summary>
         /// <param name="message"></param>
-        public static void Danger(string message)
+        public void Danger(string message)
         {
-            Queue(message, FlashMessageType.Danger);
+            Queue(FlashMessageType.Danger, message);
         }
 
         /// <summary>
         /// Queues the passed message as a danger message with title.
         /// </summary>
         /// <param name="message"></param>
-        public static void Danger(string title, string message)
+        public void Danger(string title, string message)
         {
-            Queue(message, title, FlashMessageType.Danger);
+            Queue(FlashMessageType.Danger, message, title);
         }
 
         /// <summary>
@@ -205,11 +205,11 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public static void Danger(string format, params object[] args)
+        public void Danger(string format, params object[] args)
         {
 
             var message = string.Format(format, args);
-            Queue(message, FlashMessageType.Danger);
+            Queue(FlashMessageType.Danger, message);
         }
 
         /// <summary>
@@ -218,20 +218,20 @@ namespace Vereyon.Web
         /// <param name="title"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public static void Danger(string title, string format, params object[] args)
+        public void Danger(string title, string format, params object[] args)
         {
 
             var message = string.Format(format, args);
-            Queue(message, title, FlashMessageType.Danger);
+            Queue(FlashMessageType.Danger, message, title);
         }
 
         /// <summary>
         /// Queues the passed message as a confirmation message.
         /// </summary>
         /// <param name="message"></param>
-        public static void Confirmation(string message)
+        public void Confirmation(string message)
         {
-            Queue(message, FlashMessageType.Confirmation);
+            Queue(FlashMessageType.Confirmation, message);
         }
 
         /// <summary>
@@ -239,9 +239,9 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
-        public static void Confirmation(string title, string message)
+        public void Confirmation(string title, string message)
         {
-            Queue(message, title, FlashMessageType.Confirmation);
+            Queue(FlashMessageType.Confirmation, message, title);
         }
 
         /// <summary>
@@ -249,11 +249,11 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public static void Confirmation(string format, params object[] args)
+        public void Confirmation(string format, params object[] args)
         {
 
             var message = string.Format(format, args);
-            Queue(message, FlashMessageType.Confirmation);
+            Queue(FlashMessageType.Confirmation, message);
         }
 
         /// <summary>
@@ -262,13 +262,13 @@ namespace Vereyon.Web
         /// <param name="title"></param>
         /// <param name="format"></param>
         /// <param name="args"></param>
-        public static void Confirmation(string title, string format, params object[] args)
+        public void Confirmation(string title, string format, params object[] args)
         {
 
             var message = string.Format(format, args);
-            Queue(message, title, FlashMessageType.Confirmation);
+            Queue(FlashMessageType.Confirmation, message, title);
         }
-        */
+        
         #endregion
 
         /// <summary>
