@@ -32,6 +32,7 @@ namespace Web.FlashMessage.MvcCoreExample
             // Add framework services.
             services.AddMvc();
 
+            // Add services required for flash message to work.
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<Vereyon.Web.IFlashMessage, Vereyon.Web.FlashMessage>();

@@ -10,3 +10,7 @@
 /Web.FlashMessage.MvcCoreExample/bin
 /Web.FlashMessage.MvcExample/obj
 /Web.FlashMessage.MvcExample/bin
+/packages
+/.vs
+/Web.FlashMessage.Core.Tests/obj
+/Web.FlashMessage.Core.Tests/bin

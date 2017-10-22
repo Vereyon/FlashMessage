@@ -5,12 +5,26 @@
 <div class="row">
     <div class="col-md-12">
         <h1>FlashMessage example</h1>
+        <p>Click on of the buttons below to POST a form which generates a message of the specified type.</p>
         
-        @using (Html.BeginForm(new { ACtion = "HandleFormPost1" }))
+        @using (Html.BeginForm(new { Action = "Info" }))
         {
-
-
-            <button type="submit" class="btn btn-default">Post Form 1</button>
+            <button type="submit" class="btn btn-default">Info</button>
         }
+        @using (Html.BeginForm(new { Action = "Confirmation" }))
+        {
+            <button type="submit" class="btn btn-default">Confirmation</button>
+        }
+        @using (Html.BeginForm(new { Action = "Danger" }))
+        {
+            <button type="submit" class="btn btn-default">Danger</button>
+        }
+        @using (Html.BeginForm(new { Action = "Warning" }))
+        {
+            <button type="submit" class="btn btn-default">Warning</button>
+        }
+
+        <hr/>
+        <a href="/" class="btn btn-default">Reload home page</a>
     </div>
 </div>

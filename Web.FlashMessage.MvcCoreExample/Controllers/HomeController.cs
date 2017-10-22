@@ -26,20 +26,30 @@ namespace Web.FlashMessage.MvcCoreExample.Controllers
         }
 
         [HttpPost]
-        public IActionResult HandleFormPost1()
+        public IActionResult Warning()
         {
-
-
-
-            FlashMessage.Queue("Example message");
+            FlashMessage.Warning("Example warning message");
             return RedirectToAction("Index");
         }
 
         [HttpPost]
-        public IActionResult HandleFormPost2()
+        public IActionResult Info()
         {
+            FlashMessage.Info("Example informational message");
+            return RedirectToAction("Index");
+        }
 
-            FlashMessage.Queue("Example message");
+        [HttpPost]
+        public IActionResult Confirmation()
+        {
+            FlashMessage.Confirmation("Example comfirmation message");
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Danger()
+        {
+            FlashMessage.Danger("Example danger message");
             return RedirectToAction("Index");
         }
     }
