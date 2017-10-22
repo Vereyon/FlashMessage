@@ -100,7 +100,7 @@ namespace Vereyon.Web
         }
 
         /// <summary>
-        /// Queues the passed message as an infomational message.
+        /// Queues the passed message as an informational message.
         /// </summary>
         /// <param name="message"></param>
         public static void Info(string message)
@@ -109,7 +109,7 @@ namespace Vereyon.Web
         }
 
         /// <summary>
-        /// Queues the passed message as an infomational message with title.
+        /// Queues the passed message as an informational message with title.
         /// </summary>
         /// <param name="title"></param>
         /// <param name="message"></param>
@@ -119,7 +119,7 @@ namespace Vereyon.Web
         }
 
         /// <summary>
-        /// Formats and queues the passed message as an infomational message.
+        /// Formats and queues the passed message as an informational message.
         /// </summary>
         /// <param name="format"></param>
         /// <param name="args"></param>
@@ -131,7 +131,7 @@ namespace Vereyon.Web
         }
 
         /// <summary>
-        /// Formats and queues the passed message as an infomational message with title.
+        /// Formats and queues the passed message as an informational message with title.
         /// </summary>
         /// <param name="title"></param>
         /// <param name="format"></param>
