@@ -1,7 +1,7 @@
 FlashMessage
 ============
 
-[![NuGet version](https://badge.fury.io/nu/Vereyon.Web.FlashMessage.Core.svg)](http://badge.fury.io/nu/Vereyon.Web.FlashMessageCore)
+[![NuGet version](https://badge.fury.io/nu/Vereyon.Web.FlashMessage.Core.svg)](http://badge.fury.io/nu/Vereyon.Web.FlashMessage.Core)
 [![NuGet version](https://badge.fury.io/nu/Vereyon.Web.FlashMessage.svg)](http://badge.fury.io/nu/Vereyon.Web.FlashMessage)
 
 FlashMessage provides easy cross request notifications for ASP.NET MVC based on Twitter Bootstrap. It solves the problem with flashing the user a notification or message when using the Post/Redirect/Get pattern and ```RedirectToAction()``` method.
