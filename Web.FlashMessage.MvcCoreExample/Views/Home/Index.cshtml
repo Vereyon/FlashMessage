@@ -6,7 +6,7 @@
     <div class="col-md-12">
         <h1>FlashMessage example</h1>
         <p>Click on of the buttons below to POST a form which generates a message of the specified type.</p>
-        
+
         @using (Html.BeginForm(new { Action = "Info" }))
         {
             <button type="submit" class="btn btn-default">Info</button>
@@ -24,7 +24,12 @@
             <button type="submit" class="btn btn-default">Warning</button>
         }
 
-        <hr/>
+        @using (Html.BeginForm(new { Action = "DoubleInfoStepOne" }))
+        {
+            <button type="submit" class="btn btn-default">Double redirect</button>
+        }
+
+        <hr />
         <a href="/" class="btn btn-default">Reload home page</a>
     </div>
 </div>

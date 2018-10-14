@@ -40,6 +40,20 @@ namespace Web.FlashMessage.MvcCoreExample.Controllers
         }
 
         [HttpPost]
+        public IActionResult DoubleInfoStepOne()
+        {
+            FlashMessage.Info("First informational message");
+            return RedirectToAction("DoubleInfoStepTwo");
+        }
+
+        [HttpGet]
+        public IActionResult DoubleInfoStepTwo()
+        {
+            FlashMessage.Info("Second informational message");
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
         public IActionResult Confirmation()
         {
             FlashMessage.Confirmation("Example comfirmation message");
