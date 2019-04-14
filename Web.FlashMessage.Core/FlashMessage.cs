@@ -46,7 +46,7 @@ namespace Vereyon.Web
         /// <param name="message"></param>
         public void Queue(string message)
         {
-            Queue( FlashMessageType.Info, message, string.Empty, false);
+            Queue(FlashMessageType.Info, message, string.Empty, false);
         }
 
         /// <summary>

@@ -76,14 +76,5 @@ namespace Vereyon.Web
                     return "alert alert-success";
             }
         }
-
-        /*
-         * http://forums.asp.net/t/1752236.aspx/1?ASP+NET+MVC+Multiple+Forms+Validation+Summaries
-        public static void RenderValidationFlashMessage(this HtmlHelper html, string message)
-        {
-            if(html.ViewData.ModelState.IsValid
-        }*/
     }
-
-    
 }
