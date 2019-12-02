@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Vereyon.Web.FlashMessage</id>
+    <version>1.1.0-beta1</version>
+    <title>FlashMessage</title>
+    <authors>Vereyon</authors>
+    <owners>Vereyon</owners>
+    <licenseUrl>https://github.com/Vereyon/FlashMessage/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Vereyon/FlashMessage</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>FlashMessage provides easy cross request notifications for ASP.NET MVC (Core) based on Twitter Bootstrap alerts.</description>
+    <releaseNotes>1.1.0: Single package which targets both .NET Standard and the .NET Framework.</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>ASP.NET MVC PRG notification message flash</tags>
+    <dependencies>
+      <group targetFramework="net40">
+        <dependency id="Microsoft.AspNet.Mvc" version="3.0.50813.1" />
+        <dependency id="Microsoft.AspNet.Razor" version="1.0.20105.408" />
+        <dependency id="Microsoft.AspNet.WebPages" version="1.0.20105.408" />
+        <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
+      </group>
+      <group targetFramework="netstandard1.6">
+        <dependency id="Microsoft.AspNetCore.Http" version="1.1.1" />
+        <dependency id="Microsoft.AspNetCore.Mvc.ViewFeatures" version="1.1.1" />
+      </group>
+      <group targetFramework="netstandard2.0">
+        <dependency id="Microsoft.AspNetCore.Mvc" version="1.1.1" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

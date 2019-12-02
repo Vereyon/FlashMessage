@@ -4,7 +4,7 @@
     <Description>FlashMessage provides easy cross request notifications for ASP.NET MVC Core based on Twitter Bootstrap alerts.</Description>
     <Authors>Vereyon</Authors>
     <TargetFrameworks>netstandard1.6;netstandard2.0</TargetFrameworks>
-    <AssemblyName>Vereyon.Web.FlashMessageCore</AssemblyName>
+    <AssemblyName>Vereyon.Web.FlashMessage</AssemblyName>
     <PackageId>Web.FlashMessage.Core</PackageId>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
@@ -12,6 +12,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <Version>1.1.0</Version>
+    <RootNamespace>Web.FlashMessage</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

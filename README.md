@@ -22,9 +22,8 @@ Install the [FlashMessage Core NuGet package](https://www.nuget.org/packages/Ver
 Register the required services during startup of you application:
 
 ```C#
-services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
-services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-services.AddScoped<Vereyon.Web.IFlashMessage, Vereyon.Web.FlashMessage>();
+// Add services required for flash message to work.
+services.AddFlashMessage();
 ```
 
 #### Rendering flash messages

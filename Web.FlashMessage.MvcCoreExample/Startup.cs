@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Http;
+using Vereyon.Web;
 
 namespace Web.FlashMessage.MvcCoreExample
 {
@@ -33,9 +34,7 @@ namespace Web.FlashMessage.MvcCoreExample
             services.AddMvc();
 
             // Add services required for flash message to work.
-            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<Vereyon.Web.IFlashMessage, Vereyon.Web.FlashMessage>();
+            services.AddFlashMessage();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

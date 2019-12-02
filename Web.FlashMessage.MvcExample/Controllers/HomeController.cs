@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Vereyon.Web;
 
 namespace Web.FlashMessage.MvcExample.Controllers
 {
@@ -10,6 +11,7 @@ namespace Web.FlashMessage.MvcExample.Controllers
     {
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -25,6 +27,13 @@ namespace Web.FlashMessage.MvcExample.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult TestInfo()
+        {
+
+            Vereyon.Web.FlashMessage.Info("Example informational message");
+            return RedirectToAction("Index");
         }
     }
 }
