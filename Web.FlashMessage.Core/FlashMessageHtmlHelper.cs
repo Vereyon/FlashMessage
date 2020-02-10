@@ -15,11 +15,12 @@ namespace Vereyon.Web
     {
 
         /// <summary>
-        /// Renders any queued flash messages to and returns the html code. 
+        /// Renders any queued flash messages as a Twitter Bootstrap alerta and returns the html code. 
         /// </summary>
         /// <param name="html"></param>
+        /// /// <param name="dismissable">Indicates if the messages should be dismissable</param>
         /// <returns></returns>
-        public static IHtmlContent RenderFlashMessages(this IHtmlHelper html)
+        public static IHtmlContent RenderFlashMessages(this IHtmlHelper html, bool dismissable = true)
         {
 
             // Retrieve queued messages.
@@ -28,7 +29,7 @@ namespace Vereyon.Web
 
             foreach (var message in messages)
             {
-                output += RenderFlashMessage(message);
+                output += RenderFlashMessage(message, dismissable);
             }
 
             return new HtmlString(output);
@@ -38,12 +39,18 @@ namespace Vereyon.Web
         /// Renders the passed flash message as a Twitter Bootstrap alert component.
         /// </summary>
         /// <param name="message"></param>
+        /// <param name="dismissable">Indicates if this message should be dismissable</param>
         /// <returns></returns>
-        public static HtmlString RenderFlashMessage(FlashMessageModel message)
+        public static HtmlString RenderFlashMessage(FlashMessageModel message, bool dismissable = true)
         {
-            string result = "<div class=\"" + message.Type.GetCssStyle() + " alert-dismissible\" role=\"alert\">\r\n";
+            var cssClasses = message.Type.GetCssStyle();
+            if (dismissable)
+                cssClasses += " alert-dismissible";
+            string result = $"<div class=\"{cssClasses}\" role=\"alert\">\r\n";
 
-            result += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n";
+            if (dismissable)
+                result += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n";
+
             if (!string.IsNullOrWhiteSpace(message.Title))
                 result += "<strong>" + WebUtility.HtmlEncode(message.Title) + "</strong> ";
 
