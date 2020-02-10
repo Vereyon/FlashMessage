@@ -34,6 +34,12 @@ Typically you want to render all queued flash messages in your Layout Razor temp
 @Vereyon.Web.FlashMessageHtmlHelper.RenderFlashMessages(Html)
 ```
 
+Optionally you can disable the dismiss icon passing `dismissable: false`:
+
+```C#
+@Vereyon.Web.FlashMessageHtmlHelper.RenderFlashMessages(Html, false)
+```
+
 #### Queuing flash messages
 
 In order to be able to queue flash messages you'll need a reference to the ```IFlashMessage``` interface. Ask for it to be injected in your controller:

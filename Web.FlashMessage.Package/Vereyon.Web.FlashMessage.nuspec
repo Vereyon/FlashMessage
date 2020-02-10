@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Vereyon.Web.FlashMessage</id>
-    <version>1.1.0</version>
+    <version>1.2.0</version>
     <title>FlashMessage</title>
     <authors>Vereyon</authors>
     <owners>Vereyon</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/Vereyon/FlashMessage</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>FlashMessage provides easy cross request notifications for ASP.NET MVC (Core) based on Twitter Bootstrap alerts.</description>
-    <releaseNotes>1.1.0: Single package which targets both .NET Standard and the .NET Framework.</releaseNotes>
+    <releaseNotes>1.2.0: Make dismiss icon optional.</releaseNotes>
     <copyright>Copyright 2019</copyright>
     <tags>ASP.NET MVC PRG notification message flash</tags>
     <dependencies>
