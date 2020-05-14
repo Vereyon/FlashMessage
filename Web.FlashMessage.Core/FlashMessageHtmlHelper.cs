@@ -18,13 +18,13 @@ namespace Vereyon.Web
         /// Renders any queued flash messages as a Twitter Bootstrap alerta and returns the html code. 
         /// </summary>
         /// <param name="html"></param>
-        /// /// <param name="dismissable">Indicates if the messages should be dismissable</param>
+        /// <param name="dismissable">Indicates if the messages should be dismissable</param>
         /// <returns></returns>
         public static IHtmlContent RenderFlashMessages(this IHtmlHelper html, bool dismissable = true)
         {
 
             // Retrieve queued messages.
-            var messages = FlashMessage.Retrieve(html.TempData);
+            var messages = FlashMessage.Retrieve(html.ViewContext.TempData);
             var output = "";
 
             foreach (var message in messages)
