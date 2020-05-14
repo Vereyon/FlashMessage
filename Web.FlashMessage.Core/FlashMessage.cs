@@ -31,11 +31,15 @@ namespace Vereyon.Web
 
         private IHttpContextAccessor _httpContextAccessor;
 
-        public FlashMessage(ITempDataDictionaryFactory tempDataFactory, IHttpContextAccessor httpContextAccessor)
+        private IFlashMessageSerializer _messageSerializer;
+
+        public FlashMessage(ITempDataDictionaryFactory tempDataFactory, IHttpContextAccessor httpContextAccessor, 
+            IFlashMessageSerializer messageSerializer)
         {
 
             _tempDataFactory = tempDataFactory;
             _httpContextAccessor = httpContextAccessor;
+            _messageSerializer = messageSerializer;
         }
 
         public static string KeyName { get; set; } = "_FlashMessage";
@@ -272,75 +276,7 @@ namespace Vereyon.Web
         
         #endregion
 
-        /// <summary>
-        /// Deserializes a serialized collection of flash messages.
-        /// </summary>
-        /// <param name="serializedMessages"></param>
-        /// <returns></returns>
-        public static List<FlashMessageModel> Deserialize(byte[] data)
-        {
-
-            var messages = new List<FlashMessageModel>();
-            int messageCount;
-
-            // Check if there is any data to read, if not we are done quickly.
-            if (data.Length == 0)
-                return messages;
-
-            using (MemoryStream stream = new MemoryStream(data))
-            {
-                using (BinaryReader reader = new BinaryReader(stream))
-                {
-
-                    // Read the number of message in the stream and deserialize each message.
-                    messageCount = reader.ReadInt32();
-                    while (messageCount > 0)
-                    {
-
-                        var model = new FlashMessageModel();
-                        model.IsHtml = reader.ReadBoolean();
-                        model.Message = reader.ReadString();
-                        model.Title = reader.ReadString();
-                        model.Type = (FlashMessageType)reader.ReadByte();
-
-                        // Store message and decrement message counter.
-                        messages.Add(model);
-                        messageCount--;
-                    }
-
-                    return messages;
-                }
-            }
-        }
-
-        /// <summary>
-        /// Serializes the passed list of messages to binary format.
-        /// </summary>
-        /// <param name="messages"></param>
-        /// <returns></returns>
-        public static byte[] Serialize(IList<FlashMessageModel> messages)
-        {
-            using (MemoryStream stream = new MemoryStream())
-            {
-                using (BinaryWriter writer = new BinaryWriter(stream))
-                {
-
-                    // Write the number of message and serialize each message.
-                    writer.Write(messages.Count);
-                    foreach (var message in messages)
-                    {
-                        writer.Write(message.IsHtml);
-                        writer.Write(message.Message);
-                        writer.Write(message.Title);
-                        writer.Write((byte)message.Type);
-                    }
-
-                    // Return the data as a byte array.
-                    writer.Flush();
-                    return stream.ToArray();
-                }
-            }
-        }
+        
 
         /// <summary>
         /// Queues the passed flash messages for display, replacing any queued messages.
@@ -351,7 +287,7 @@ namespace Vereyon.Web
         {
 
             // Serialize the messages.
-            var data = Serialize(messages);
+            var data = _messageSerializer.Serialize(messages);
 
             // Set the data without doing any further securing or transformations.
             TempData[KeyName] = data;
@@ -362,7 +298,7 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="this"></param>
         /// <returns></returns>
-        public static List<FlashMessageModel> Retrieve(ITempDataDictionary dictionary)
+        public List<FlashMessageModel> Retrieve(ITempDataDictionary dictionary)
         {
 
             // Retrieve the data from the session store, guard for cases where it does not exist.
@@ -372,7 +308,7 @@ namespace Vereyon.Web
 
             // Clear the data and return.
             dictionary.Remove(KeyName);
-            return Deserialize((byte[])data);
+            return _messageSerializer.Deserialize((string)data);
         }
 
         /// <summary>
@@ -380,14 +316,14 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="this"></param>
         /// <returns></returns>
-        public static List<FlashMessageModel> Queued(ITempDataDictionary dictionary)
+        public List<FlashMessageModel> Queued(ITempDataDictionary dictionary)
         {
 
             // For this transport Peek() and Queued() have equal implementations.
             return Peek(dictionary);
         }
 
-        public static List<FlashMessageModel> Peek(ITempDataDictionary dictionary)
+        public List<FlashMessageModel> Peek(ITempDataDictionary dictionary)
         {
 
             // Retrieve the data from the session store, guard for cases where it does not exist.
@@ -396,7 +332,7 @@ namespace Vereyon.Web
                 return new List<FlashMessageModel>();
 
             // Deserialize messages and return them.
-            return Deserialize((byte[])data);
+            return _messageSerializer.Deserialize((string)data);
         }
     }
 }

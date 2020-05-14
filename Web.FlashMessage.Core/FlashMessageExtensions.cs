@@ -19,6 +19,7 @@ namespace Vereyon.Web
 
             services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IFlashMessageSerializer, JsonFlashMessageSerializer>();
             services.AddScoped<IFlashMessage, FlashMessage>();
         }
     }
