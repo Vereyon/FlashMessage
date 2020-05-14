@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.FlashMessage.MvcExample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.FlashMessage.Tests", "Web.FlashMessage.Tests\Web.FlashMessage.Tests.csproj", "{63F72649-587F-4F60-B0F1-DCFE2012A6C5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.FlashMessage.MvcCoreExampleLatest", "Web.FlashMessage.MvcCoreExampleLatest\Web.FlashMessage.MvcCoreExampleLatest.csproj", "{2CD7D182-8DA8-4CC8-8284-FB38B1428D02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{63F72649-587F-4F60-B0F1-DCFE2012A6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63F72649-587F-4F60-B0F1-DCFE2012A6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63F72649-587F-4F60-B0F1-DCFE2012A6C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CD7D182-8DA8-4CC8-8284-FB38B1428D02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CD7D182-8DA8-4CC8-8284-FB38B1428D02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CD7D182-8DA8-4CC8-8284-FB38B1428D02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CD7D182-8DA8-4CC8-8284-FB38B1428D02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

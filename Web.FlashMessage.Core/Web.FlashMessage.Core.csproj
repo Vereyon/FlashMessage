@@ -3,21 +3,25 @@
   <PropertyGroup>
     <Description>FlashMessage provides easy cross request notifications for ASP.NET MVC Core based on Twitter Bootstrap alerts.</Description>
     <Authors>Vereyon</Authors>
-    <TargetFrameworks>netstandard1.6;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>Vereyon.Web.FlashMessage</AssemblyName>
     <PackageId>Web.FlashMessage.Core</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
-    <PackageTargetFallback>$(PackageTargetFallback);dnxcore50</PackageTargetFallback>
+    <NetStandardImplicitPackageVersion>2.0.0</NetStandardImplicitPackageVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>1.2.0</Version>
-    <RootNamespace>Web.FlashMessage</RootNamespace>
+    <Version>2.0.0-beta2</Version>
+    <RootNamespace>Vereyon.FlashMessage</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.1.1" />
+    <Compile Remove="FlashMessageHtmlHelper.cs" />
+    <Compile Remove="JsonContractFlashMessageSerializer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="System.Text.Json" Version="4.6.0" />
   </ItemGroup>
 
 </Project>

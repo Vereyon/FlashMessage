@@ -16,3 +16,5 @@
 /Web.FlashMessage.Core.Tests/bin
 *.nupkg
 /Web.FlashMessage.Package/lib
+/Web.FlashMessage.MvcCoreExampleLatest/bin
+/Web.FlashMessage.MvcCoreExampleLatest/obj
