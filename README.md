@@ -15,6 +15,9 @@ Usage
 
 Install the [FlashMessage NuGet package](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/) and import the ```Vereyon.Web``` namespace where you need it.
 
+```
+Install-Package Vereyon.Web.FlashMessage
+```
 
 #### Registering required services for depencency injection
 
@@ -23,6 +26,24 @@ Register the required services during startup of you application:
 ```C#
 // Add services required for flash message to work.
 services.AddFlashMessage();
+```
+
+In case you are using ASP.NET Core 3 or newer you'll need to make sure the Newtonsoft serializer is used:
+
+```
+Install-Package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+```
+
+Next make to add a call to `AddNewtonsoftJson()` directly after registering MVC, Controller or RazorPage services, like in one of the following lines:
+
+```C#
+// Old style ASP .NET Core
+services.AddMvc().AddNewtonsoftJson();
+
+// ASP .NET Core 3+ style
+services.AddControllers().AddNewtonsoftJson();
+services.AddControllersWithViews().AddNewtonsoftJson();
+services.AddRazorPages().AddNewtonsoftJson();
 ```
 
 #### Rendering flash messages
