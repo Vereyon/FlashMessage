@@ -4,9 +4,48 @@ FlashMessage
 
 | ASP.NET version    | Package       |
 | ------------------ |:-------------:|
-| ASP.NET Classic and Core    | [![NuGet version](https://badge.fury.io/nu/Vereyon.Web.FlashMessage.svg)](http://badge.fury.io/nu/Vereyon.Web.FlashMessage) |
+| ASP.NET Core 2 and up			| [![Nuget version](https://img.shields.io/nuget/v/Vereyon.Web.FlashMessage)](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/) |
+| ASP.NET Classic and Core 1	| [![NuGet version](https://img.shields.io/badge/nuget-1.2.0-green)](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/1.2.0) |
 
 FlashMessage provides easy cross request notifications for ASP.NET MVC based on Twitter Bootstrap. It solves the problem with flashing the user a notification or message when using the Post/Redirect/Get pattern and ```RedirectToAction()``` method.
+
+Quickstart
+----------
+
+Install the [FlashMessage NuGet package](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/) :
+
+```
+Install-Package Vereyon.Web.FlashMessage
+```
+
+Register the flash message service in your startup class:
+
+```C#
+// Add services required for flash message to work.
+services.AddFlashMessage();
+```
+
+Inject ```IFlashMessage``` in your controllers:
+
+```C#
+public HomeController(IFlashMessage flashMessage)
+```
+
+Queue some messages in your action method:
+
+```C#
+_flashMessage.Confirmation("Your confirmation message");
+```
+
+Register the tag helper in your view and have the messages rendered using ```<flash />```:
+
+```C#
+@addTagHelper *, Vereyon.Web.FlashMessage
+```
+
+```HTML
+<flash dismissable="true" />
+```
 
 Upgrading to version 2.0
 ------------------------
@@ -87,7 +126,7 @@ FlashMessage.Confirmation("You have been logged in as: {0}", user.Name);
 return RedirectToLocal(returnUrl);
 ```
 
-Different types of messages can be scheduled using different static methods on the FlashMessage object:
+Different types of messages can be scheduled using different methods on the IFlashMessage interface:
 
 ```C#
 FlashMessage.Info("Your informational message");

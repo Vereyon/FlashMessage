@@ -5,13 +5,14 @@
     <Authors>Vereyon</Authors>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>Vereyon.Web.FlashMessage</AssemblyName>
-    <PackageId>Web.FlashMessage.Core</PackageId>
+    <PackageId>Vereyon.Web.FlashMessage</PackageId>
     <NetStandardImplicitPackageVersion>2.0.0</NetStandardImplicitPackageVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <Version>2.0.0-beta2</Version>
     <RootNamespace>Vereyon.FlashMessage</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
