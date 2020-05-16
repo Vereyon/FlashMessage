@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Vereyon.Web
 {
+    /// <summary>
+    /// Defines a contract for serializing flash messages to and from a string based format.
+    /// </summary>
     public interface IFlashMessageSerializer
     {
 

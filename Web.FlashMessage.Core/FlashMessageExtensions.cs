@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,8 +18,12 @@ namespace Vereyon.Web
         public static void AddFlashMessage(this IServiceCollection services)
         {
 
-            services.AddSingleton<ITempDataProvider, CookieTempDataProvider>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            // Only register ITempDataProvider or IHttpContextAccessor implementations in none has
+            // been registered yet.
+            services.TryAddSingleton<ITempDataProvider, CookieTempDataProvider>();
+            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            // Register flash message specific services.
             services.AddScoped<IFlashMessageSerializer, JsonFlashMessageSerializer>();
             services.AddScoped<IFlashMessage, FlashMessage>();
         }

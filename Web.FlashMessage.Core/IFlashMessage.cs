@@ -13,5 +13,17 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="flashMessage"></param>
         void Queue(FlashMessageModel flashMessage);
+
+        /// <summary>
+        /// Retrieves the queued flash messages for display and clears them.
+        /// </summary>
+        /// <returns></returns>
+        List<FlashMessageModel> Retrieve();
+
+        /// <summary>
+        /// Retrieves the queued messages for the current response without clearing them.
+        /// </summary>
+        /// <returns></returns>
+        List<FlashMessageModel> Peek();
     }
 }

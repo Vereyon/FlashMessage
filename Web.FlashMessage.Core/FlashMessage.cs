@@ -13,7 +13,7 @@ namespace Vereyon.Web
     {
 
 
-        public ITempDataDictionary _tempData;
+        private ITempDataDictionary _tempData;
 
         public ITempDataDictionary TempData
         {
@@ -44,9 +44,6 @@ namespace Vereyon.Web
 
         public static string KeyName { get; set; } = "_FlashMessage";
 
-        
-
-
         /// <summary>
         /// Queues the passed flash message for display.
         /// </summary>
@@ -54,10 +51,8 @@ namespace Vereyon.Web
         public void Queue(FlashMessageModel message)
         {
 
-            List<FlashMessageModel> messages;
-
-            // Retrieve the currently queued cookies.
-            messages = Queued(TempData);
+            // Retrieve the currently queued message.
+            var messages = Peek();
 
             // Append the new message.
             messages.Add(message);
@@ -84,38 +79,29 @@ namespace Vereyon.Web
         /// <summary>
         /// Retrieves the queued flash messages for display and clears them.
         /// </summary>
-        /// <param name="this"></param>
         /// <returns></returns>
-        public List<FlashMessageModel> Retrieve(ITempDataDictionary dictionary)
+        public List<FlashMessageModel> Retrieve()
         {
 
             // Retrieve the data from the session store, guard for cases where it does not exist.
-            var data = dictionary[KeyName];
+            var data = TempData[KeyName];
             if (data == null)
                 return new List<FlashMessageModel>();
 
             // Clear the data and return.
-            dictionary.Remove(KeyName);
+            TempData.Remove(KeyName);
             return _messageSerializer.Deserialize((string)data);
         }
 
         /// <summary>
         /// Retrieves the queued messages for the current response without clearing them.
         /// </summary>
-        /// <param name="this"></param>
         /// <returns></returns>
-        public List<FlashMessageModel> Queued(ITempDataDictionary dictionary)
-        {
-
-            // For this transport Peek() and Queued() have equal implementations.
-            return Peek(dictionary);
-        }
-
-        public List<FlashMessageModel> Peek(ITempDataDictionary dictionary)
+        public List<FlashMessageModel> Peek()
         {
 
             // Retrieve the data from the session store, guard for cases where it does not exist.
-            var data = dictionary.Peek(KeyName);
+            var data = TempData.Peek(KeyName);
             if (data == null)
                 return new List<FlashMessageModel>();
 
