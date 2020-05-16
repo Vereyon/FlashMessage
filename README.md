@@ -8,6 +8,16 @@ FlashMessage
 
 FlashMessage provides easy cross request notifications for ASP.NET MVC based on Twitter Bootstrap. It solves the problem with flashing the user a notification or message when using the Post/Redirect/Get pattern and ```RedirectToAction()``` method.
 
+Upgrading to version 2.0
+------------------------
+
+* Only supports .NET Standard 2.0 and up
+* Some short hand methods have been changed
+ * Queue removed
+ * Methods accepting a string format args removed
+ * Consistently put message parameter first, title second
+* HtmlHelper replaced with Tag Helper.
+
 Usage
 -----
 
