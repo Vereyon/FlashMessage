@@ -39,10 +39,5 @@ namespace Vereyon.Web
         Warning,
         Danger,
         Confirmation,
-
-        /// <summary>
-        /// Custom css code.
-        /// </summary>
-        Custom = 255
     }
 }

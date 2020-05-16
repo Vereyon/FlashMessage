@@ -9,9 +9,11 @@ using System.Net;
 
 namespace Vereyon.Web
 {
-
+    /// <summary>
+    /// Renders flash messages as Twitter Bootstrap Alerts
+    /// </summary>
     [OutputElementHint("div")]
-    [HtmlTargetElement("flash")]
+    [HtmlTargetElement("flash", TagStructure = TagStructure.WithoutEndTag)]
     public class FlashTagHelper : TagHelper
     {
 
@@ -20,6 +22,11 @@ namespace Vereyon.Web
 
         [ViewContext]
         public ViewContext ViewContext { get; set; }
+
+        /// <summary>
+        /// Gets / sets if the message should be dismissible.
+        /// </summary>
+        public bool Dismissable { get; set; } = false;
 
         public FlashTagHelper(IFlashMessage flashMessage, IFlashMessageSerializer serializer)
         {
@@ -30,6 +37,9 @@ namespace Vereyon.Web
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
 
+            // Ensure both a start and end tag are generated.
+            output.TagMode = TagMode.StartTagAndEndTag;
+
             var messages = Retrieve();
             foreach(var message in messages)
             {
@@ -38,7 +48,7 @@ namespace Vereyon.Web
             }
         }
 
-        public List<FlashMessageModel> Retrieve()
+        protected List<FlashMessageModel> Retrieve()
         {
 
             // Retrieve the data from the session store, guard for cases where it does not exist.
@@ -57,14 +67,14 @@ namespace Vereyon.Web
         /// <param name="message"></param>
         /// <param name="dismissable">Indicates if this message should be dismissable</param>
         /// <returns></returns>
-        public static HtmlString RenderFlashMessage(FlashMessageModel message, bool dismissable = true)
+        protected HtmlString RenderFlashMessage(FlashMessageModel message)
         {
             var cssClasses = GetCssStyle(message.Type);
-            if (dismissable)
+            if (Dismissable)
                 cssClasses += " alert-dismissible";
             string result = $"<div class=\"{cssClasses}\" role=\"alert\">\r\n";
 
-            if (dismissable)
+            if (Dismissable)
                 result += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n";
 
             if (!string.IsNullOrWhiteSpace(message.Title))
