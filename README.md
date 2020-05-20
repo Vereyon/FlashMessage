@@ -50,17 +50,19 @@ Register the tag helper in your view and have the messages rendered using ```<fl
 Upgrading to version 2.0
 ------------------------
 
-* Only supports .NET Standard 2.0 and up
-* Some short hand methods have been changed
- * Queue removed
- * Methods accepting a string format args removed
- * Consistently put message parameter first, title second
-* HtmlHelper replaced with Tag Helper.
+When updating from FlashMessage 1.x, the following changes need to be taken into account:
+
+* FlashMessage now only supports .NET Standard 2.0 and up.
+* Some of the short hand methods to queue messages have been changed:
+ * The Queue() methods have all been removed, except for the one taking a ```FlashMessageModel``` instance.
+ * Methods accepting a string format args have removed.
+ * Consistently put message parameter first, title second.
+* The HtmlHelper has been replaced with a Razor tag helper.
 
 Usage
 -----
 
-### ASP.NET Core
+### ASP.NET Core 2 and up
 
 Install the [FlashMessage NuGet package](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/) and import the ```Vereyon.Web``` namespace where you need it.
 
@@ -77,22 +79,64 @@ Register the required services during startup of you application:
 services.AddFlashMessage();
 ```
 
-In case you are using ASP.NET Core 3 or newer you'll need to make sure the Newtonsoft serializer is used:
+#### Rendering flash messages
 
-```
-Install-Package Microsoft.AspNetCore.Mvc.NewtonsoftJson
-```
-
-Next make to add a call to `AddNewtonsoftJson()` directly after registering MVC, Controller or RazorPage services, like in one of the following lines:
+Typically you'll want to render all queued flash messages in your Layout Razor template. For this purpose a tag helper is available.
+Register the tag helper in your view as follows: 
 
 ```C#
-// Old style ASP .NET Core
-services.AddMvc().AddNewtonsoftJson();
+@addTagHelper *, Vereyon.Web.FlashMessage
+```
 
-// ASP .NET Core 3+ style
-services.AddControllers().AddNewtonsoftJson();
-services.AddControllersWithViews().AddNewtonsoftJson();
-services.AddRazorPages().AddNewtonsoftJson();
+Use the tag helper by writing ```<flash />```. Optionally you can indicate the messages should be dismiss by setting `dismissable="true"`:
+
+```HTML
+<flash dismissable="true" />
+```
+
+
+#### Queuing flash messages
+
+In order to be able to queue flash messages you'll need a reference to an instance of the ```IFlashMessage``` interface. Ask for it to be injected in your controller:
+
+
+```C#
+public HomeController(IFlashMessage flashMessage)
+```
+
+Queuing a confirmation message for display on the next request after for example user login is done as follows, assuming that ```_flashMessage``` is a property of type ```IFlashMessage```:
+
+```C#
+// User successfully logged in
+_flashMessage.Confirmation($"You have been logged in as: {user.Name}");
+return RedirectToLocal(returnUrl);
+```
+
+Different types of messages can be queued using different methods on the IFlashMessage interface:
+
+```C#
+FlashMessage.Info("Your informational message");
+FlashMessage.Confirmation("Your confirmation message");
+FlashMessage.Warning("Your warning message");
+FlashMessage.Danger("Your danger alert");
+FlashMessage.Danger("Message title", "Your danger alert");
+```
+
+### ASP.NET Core 1
+
+Install the [FlashMessage NuGet package](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/) and import the ```Vereyon.Web``` namespace where you need it.
+
+```
+Install-Package Vereyon.Web.FlashMessage
+```
+
+#### Registering required services for depencency injection
+
+Register the required services during startup of you application:
+
+```C#
+// Add services required for flash message to work.
+services.AddFlashMessage();
 ```
 
 #### Rendering flash messages
@@ -189,7 +233,6 @@ More information
 
  * [FlashMessage NuGet package](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/)
  * [CodeProject article on FlashMessage](http://www.codeproject.com/Articles/987638/Post-Redirect-Get-user-notifications-for-ASP-NET-M)
- * [Used in AlertA Contract Management](http://www.alert.eu)
 
 License
 -------
