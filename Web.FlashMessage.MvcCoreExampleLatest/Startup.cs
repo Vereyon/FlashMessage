@@ -32,7 +32,7 @@ namespace Web.FlashMessage.MvcCoreExampleLatest
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-			services.AddMvc().AddNewtonsoftJson();
+			services.AddMvc();//.AddNewtonsoftJson(); // Optionally add NewtonsoftJSON
             services.AddFlashMessage();
         }
 

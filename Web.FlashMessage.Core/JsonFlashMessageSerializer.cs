@@ -17,6 +17,9 @@ namespace Vereyon.Web
         public List<FlashMessageModel> Deserialize(string data)
         {
 
+            if(string.IsNullOrWhiteSpace(data))
+                return new List<FlashMessageModel>();
+
             var messages = JsonSerializer.Deserialize<List<FlashMessageModel>>(data);
             return messages;
         }

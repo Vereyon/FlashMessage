@@ -30,6 +30,7 @@ namespace Web.FlashMessage.MvcCoreExampleLatest.Controllers
         {
             ViewData["Message"] = "Your application description page.";
 
+            _flashMessage.Confirmation("Test message with title", "Title");
             _flashMessage.Confirmation("Test message");
 
             return RedirectToAction("Index");
