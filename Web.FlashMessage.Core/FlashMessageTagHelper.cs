@@ -27,6 +27,9 @@ namespace Vereyon.Web
         /// </summary>
         public bool Dismissable { get; set; } = false;
 
+        /// <summary>
+        /// Gets / sets the Twitter Bootstrap version compatibility.
+        /// </summary>
         public string BootstrapVersion { get; set; } = "5";
 
         public FlashTagHelper(IFlashMessage flashMessage)
