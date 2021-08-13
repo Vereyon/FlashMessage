@@ -94,6 +94,11 @@ Use the tag helper by writing ```<flash />```. Optionally you can indicate the m
 <flash dismissable="true" />
 ```
 
+By default, messages will be rendered for compatibility with Twitter Bootstrap 5. In case a different Bootstrap version is desired, this can be set using the `bootstrap-version` attribute:
+
+```HTML
+<flash bootstrap-version="3" />
+```
 
 #### Queuing flash messages
 
