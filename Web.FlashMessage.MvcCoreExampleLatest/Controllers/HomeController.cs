@@ -22,11 +22,11 @@ namespace Web.FlashMessage.MvcCoreExampleLatest.Controllers
         public IActionResult Index()
         {
 			
-			_flashMessage.Info("Always message");
+			_flashMessage.Info("This flash message is always set on the Index page");
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult RedirectExample()
         {
             ViewData["Message"] = "Your application description page.";
 
@@ -36,15 +36,12 @@ namespace Web.FlashMessage.MvcCoreExampleLatest.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Contact()
+        public IActionResult Bootstrap3()
         {
-            ViewData["Message"] = "Your contact page.";
 
-            return View();
-        }
+            _flashMessage.Confirmation("Test message with title", "Title");
+            _flashMessage.Info("Test message");
 
-        public IActionResult Privacy()
-        {
             return View();
         }
 

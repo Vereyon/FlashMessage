@@ -27,6 +27,11 @@ namespace Vereyon.Web
         /// </summary>
         public bool Dismissable { get; set; } = false;
 
+        /// <summary>
+        /// Gets / sets the Twitter Bootstrap version compatibility.
+        /// </summary>
+        public string BootstrapVersion { get; set; } = "5";
+
         public FlashTagHelper(IFlashMessage flashMessage)
         {
             _flashMessage = flashMessage;
@@ -50,17 +55,23 @@ namespace Vereyon.Web
         /// Renders the passed flash message as a Twitter Bootstrap alert component.
         /// </summary>
         /// <param name="message"></param>
-        /// <param name="dismissable">Indicates if this message should be dismissable</param>
         /// <returns></returns>
-        protected HtmlString RenderFlashMessage(FlashMessageModel message)
+        protected virtual HtmlString RenderFlashMessage(FlashMessageModel message)
         {
-            var cssClasses = GetCssStyle(message.Type);
-            if (Dismissable)
-                cssClasses += " alert-dismissible";
-            string result = $"<div class=\"{cssClasses}\" role=\"alert\">\r\n";
 
-            if (Dismissable)
-                result += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n";
+            string result = "";
+
+            switch (BootstrapVersion)
+            {
+                case "3":
+                case "4":
+                    result = RenderBootstrap3AlertStart(message);
+                    break;
+                case "5":
+                default:
+                    result = RenderBootstrap5AlertStart(message);
+                    break;
+            }
 
             if (!string.IsNullOrWhiteSpace(message.Title))
                 result += "<strong>" + WebUtility.HtmlEncode(message.Title) + "</strong> ";
@@ -75,11 +86,57 @@ namespace Vereyon.Web
         }
 
         /// <summary>
+        /// Returns string containing HTML code for the dismiss button.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual string RenderBootstrap5DimissButton()
+        {
+            return "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\r\n";
+        }
+
+        protected string RenderBootstrap5AlertStart(FlashMessageModel message)
+        {
+
+            var cssClasses = GetCssStyle(message.Type);
+            if (Dismissable)
+                cssClasses += " alert-dismissible";
+            var result = $"<div class=\"{cssClasses}\" role=\"alert\">\r\n";
+
+            if (Dismissable)
+                result += RenderBootstrap5DimissButton();
+
+            return result;
+        }
+
+        /// <summary>
+        /// Returns string containing HTML code for the dismiss button.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual string RenderBootstrap3DismissButton()
+        {
+            return "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n";
+        }
+
+        protected string RenderBootstrap3AlertStart(FlashMessageModel message)
+        {
+
+            var cssClasses = GetCssStyle(message.Type);
+            if (Dismissable)
+                cssClasses += " alert-dismissible";
+            string result = $"<div class=\"{cssClasses}\" role=\"alert\">\r\n";
+
+            if (Dismissable)
+                result += RenderBootstrap3DismissButton();
+
+            return result;
+        }
+
+        /// <summary>
         /// Returns the Twitter bootstrap css style for the passed message type.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        private static string GetCssStyle(FlashMessageType type)
+        protected static string GetCssStyle(FlashMessageType type)
         {
             switch (type)
             {

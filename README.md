@@ -7,7 +7,9 @@ FlashMessage
 | ASP.NET Core 2 and up			| [![Nuget version](https://img.shields.io/nuget/v/Vereyon.Web.FlashMessage)](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/) |
 | ASP.NET Classic and Core 1	| [![NuGet version](https://img.shields.io/badge/nuget-v1.2.0-blue)](https://www.nuget.org/packages/Vereyon.Web.FlashMessage/1.2.0) |
 
-FlashMessage provides easy cross request notifications for ASP.NET MVC based on Twitter Bootstrap. It solves the problem with flashing the user a notification or message when using the Post/Redirect/Get pattern and ```RedirectToAction()``` method.
+FlashMessage provides easy cross request notifications for ASP.NET MVC based on Twitter Bootstrap 3 and up. It solves the problem with flashing the user a notification or message when using the Post/Redirect/Get pattern and ```RedirectToAction()``` method.
+
+![Flash Message example!](/docs/example.png)
 
 Quickstart
 ----------
@@ -94,6 +96,11 @@ Use the tag helper by writing ```<flash />```. Optionally you can indicate the m
 <flash dismissable="true" />
 ```
 
+By default, messages will be rendered for compatibility with Twitter Bootstrap 5. In case a different Bootstrap version is desired, this can be set using the `bootstrap-version` attribute:
+
+```HTML
+<flash bootstrap-version="3" />
+```
 
 #### Queuing flash messages
 
