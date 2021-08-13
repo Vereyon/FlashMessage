@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>FlashMessage provides easy cross request notifications for ASP.NET MVC Core based on Twitter Bootstrap alerts.</Description>
-    <Authors>Vereyon</Authors>
+    <Authors>Christ Akkermans</Authors>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>Vereyon.Web.FlashMessage</AssemblyName>
     <PackageId>Vereyon.Web.FlashMessage</PackageId>
@@ -10,9 +10,14 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>2.0.0</Version>
+    <Version>3.0.0</Version>
     <RootNamespace>Vereyon.FlashMessage</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageReleaseNotes>Added support for Twitter Bootstrap version 5</PackageReleaseNotes>
+    <PackageTags>ASP.NET MVC PRG Notification Message Flash Core Twitter Bootstrap</PackageTags>
+    <PackageProjectUrl>https://github.com/Vereyon/FlashMessage</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Vereyon/FlashMessage</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
