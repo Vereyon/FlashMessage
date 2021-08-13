@@ -26,7 +26,7 @@ namespace Web.FlashMessage.MvcCoreExampleLatest.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult RedirectExample()
         {
             ViewData["Message"] = "Your application description page.";
 
