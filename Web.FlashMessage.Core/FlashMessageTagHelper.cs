@@ -82,6 +82,15 @@ namespace Vereyon.Web
             return new HtmlString(result);
         }
 
+        /// <summary>
+        /// Returns string containing HTML code for the dismiss button.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual string RenderBootstrap5DimissButton()
+        {
+            return "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\r\n";
+        }
+
         protected string RenderBootstrap5AlertStart(FlashMessageModel message)
         {
 
@@ -91,9 +100,18 @@ namespace Vereyon.Web
             var result = $"<div class=\"{cssClasses}\" role=\"alert\">\r\n";
 
             if (Dismissable)
-                result += "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>\r\n";
+                result += RenderBootstrap5DimissButton();
 
             return result;
+        }
+
+        /// <summary>
+        /// Returns string containing HTML code for the dismiss button.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual string RenderBootstrap3DismissButton()
+        {
+            return "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n";
         }
 
         protected string RenderBootstrap3AlertStart(FlashMessageModel message)
@@ -105,7 +123,7 @@ namespace Vereyon.Web
             string result = $"<div class=\"{cssClasses}\" role=\"alert\">\r\n";
 
             if (Dismissable)
-                result += "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n";
+                result += RenderBootstrap3DismissButton();
 
             return result;
         }
@@ -115,7 +133,7 @@ namespace Vereyon.Web
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
-        private static string GetCssStyle(FlashMessageType type)
+        protected static string GetCssStyle(FlashMessageType type)
         {
             switch (type)
             {
